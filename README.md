@@ -1,71 +1,60 @@
-# Multi PDF RAG Chatbot
+# DeepSeek PDF RAG Assistant
 
-This project is a Retrieval-Augmented Generation (RAG) based conversational AI application built using Streamlit. The application allows users to upload multiple PDF files, process them, and interact with the content through a chatbot interface. The chatbot uses advanced natural language processing techniques to understand and respond to user queries based on the content of the uploaded PDFs.
-
-![final](https://github.com/yashrajtarte/Multi-PDF-RAG-Chatbot/assets/91187090/bc3d7e7f-ada2-4fd9-ae4d-c50723efd171)
-
-
-## Table of Contents
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Setup and Installation](#setup-and-installation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
+A Streamlit-based PDF question answering app using RAG. Upload one or more PDF files, build a local FAISS vector index, and ask questions about the document content with DeepSeek.
 
 ## Features
-- Upload multiple PDF files for processing
-- Extract text from PDF files
-- Split extracted text into manageable chunks
-- Convert text chunks into vector representations for fast and efficient search
-- Use OpenAI's GPT model to answer questions based on the PDF content
-- Simple and user-friendly web interface built with Streamlit
 
-## Technologies Used
-- [Streamlit](https://streamlit.io/): Web application framework for creating interactive web apps
-- [PyPDF2](https://pypi.org/project/PyPDF2/): Library for reading PDF files
-- [Langchain](https://www.langchain.com/): Suite of tools for natural language processing and creating conversational AI
-- [FAISS](https://faiss.ai/): Library for efficient similarity search of vectors
-- [OpenAI](https://www.openai.com/): Provider of powerful AI models for natural language understanding and generation
+- Upload and process multiple PDF files
+- Extract PDF text with PyPDF2
+- Split long documents into searchable chunks
+- Store document vectors locally with FAISS
+- Answer questions using DeepSeek's OpenAI-compatible API
+- Keep API keys out of Git with `.env`
 
-## Setup and Installation
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/your-username/multi-pdf-rag-chatbot.git
-    cd multi-pdf-rag-chatbot
-    ```
+## Setup
 
-2. Create and activate a virtual environment:
-    ```sh
-    python -m venv venv
-    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-    ```
+1. Create and activate a virtual environment:
 
-3. Install the required dependencies:
-    ```sh
-    pip install -r requirements.txt
-    ```
+```sh
+python3 -m venv venv
+source venv/bin/activate
+```
 
-4. Set up your OpenAI API key:
-    - Create a `.env` file in the root directory and add your OpenAI API key:
-    ```sh
-    OPENAI_API_KEY=your_openai_api_key
-    ```
+2. Install dependencies:
 
-5. Run the application:
-    ```sh
-    streamlit run app.py
-    ```
+```sh
+pip install -r requirements.txt
+python -m spacy download en_core_web_sm
+```
+
+3. Create a `.env` file:
+
+```env
+DEEPSEEK_API_KEY=your_deepseek_api_key
+DEEPSEEK_MODEL=deepseek-chat
+DEEPSEEK_BASE_URL=https://api.deepseek.com
+```
+
+4. Run the app:
+
+```sh
+streamlit run app.py
+```
 
 ## Usage
-1. Open your web browser and go to `http://localhost:8501`.
-2. Use the sidebar to upload one or more PDF files.
-3. Click on the "Submit & Process" button to process the uploaded PDFs.
-4. Once processing is complete, you can ask questions related to the PDF content using the text input field.
+
+1. Open `http://localhost:8501`.
+2. Upload PDF files in the sidebar.
+3. Click `Submit & Process` to create the FAISS index.
+4. Ask questions in the input box.
 
 ## Project Structure
-multi-pdf-rag-chatbot<br>
-├── app.py # Main application file<br>
-├── requirements.txt # Required dependencies<br>
-├── .env.example # Example environment file for API keys<br>
-└── README.md # Project README file<br>
 
+```text
+.
+├── app.py
+├── requirements.txt
+├── .env.example
+├── .gitignore
+└── README.md
+```
